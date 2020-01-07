@@ -1,0 +1,31 @@
+
+/**
+ * 
+ * 使用该方法之前，一定要对数组进行简单的排序
+ * 
+ * 定义一个最高为的索引，和一个最低位的索引，还有中间索引
+ * 因为事先排序好了
+ * 如果中间的那个值小于要查找的值，说明值在后半部分，把中间值的索引加上1（为避免重复查找）更新为最小索引
+ * 如果中间的那个值大于要查找的值，说明值在前半部分，把中间值的索引减去1（为避免重复查找）更新为最大索引
+ * @param {*} arr 目标数组
+ * @param {*} key 要查找的值
+ */
+
+
+
+function binarySearch (arr,key) {
+    var lowIndex = 0;
+    var highIndex = arr.length - 1;
+
+    while (lowIndex <= highIndex) {
+        var middleIndex = parseInt ((highIndex + lowIndex) / 2);
+        if (arr[middleIndex] < key) {
+            lowIndex = middleIndex + 1;
+        } else if (arr[middleIndex] > key) {
+            highIndex = middleIndex - 1;
+        } else if (arr[middleIndex] === key) {
+            return middleIndex;
+        }
+    }
+    return false;
+}
